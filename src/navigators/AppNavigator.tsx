@@ -15,10 +15,12 @@ import { observer } from "mobx-react-lite"
 import React from "react"
 import { useColorScheme } from "react-native"
 import * as Screens from "../screens"
+import * as ActionableScreens from "../features/actionables/screens"
 import Config from "../config"
 // import { useStores } from "../models" // @demo remove-current-line
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { colors } from "../theme"
+import {BottomSheetModalScreen} from "../features/actionables/screens";
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -37,6 +39,8 @@ export type AppStackParamList = {
   Welcome: undefined,
   Home: undefined,
   GestureHandler: undefined,
+  BottomSheetModal: undefined,
+  BottomSheetKeyboard: undefined,
   ExpoQrScanner: undefined,
   SwipeCards: undefined,
   RnChartKit: undefined,
@@ -81,7 +85,9 @@ const AppStack = observer(function AppStack() {
         <>
           {/* @demo remove-block-end */}
           <Stack.Screen name="Home" component={Screens.HomeScreen}/>
-          <Stack.Screen name="BottomSheet" component={Screens.BottomSheetScreen}/>
+          <Stack.Screen name="BottomSheet" component={ActionableScreens.BottomSheetScreen}/>
+          <Stack.Screen name="BottomSheetModal" component={ActionableScreens.BottomSheetModalScreen}/>
+          <Stack.Screen name="BottomSheetKeyboard" component={ActionableScreens.BottomSheetKeyboardScreen}/>
           <Stack.Screen name="GestureHandler" component={Screens.GestureHandlerScreen}/>
           <Stack.Screen name="RnChartKit" component={Screens.ReactNativeChartKitScreen}/>
           <Stack.Screen name="PlaySound" component={Screens.PlaySoundScreen}/>

@@ -1,6 +1,5 @@
 export * from "./WelcomeScreen"
 export * from "./HomeScreen"
-export * from "./BottomSheetScreen"
 export * from "./gesture-handler/GestureHandlerScreen"
 export * from "./gesture-handler/SwipeCardsScreen"
 export * from "./charts/ReactNativeChartKitScreen"
