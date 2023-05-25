@@ -26,7 +26,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ],
+      "package": "com.alexrc.boilerplate"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -35,9 +40,20 @@
       [
         "expo-av",
         {
-          "microphonePermission": "Allow $(BOILERPLATE APP) to access your microphone."
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "07a37255-a551-46e5-ab2c-4f1c859ebf60"
+      }
+    }
   }
 }

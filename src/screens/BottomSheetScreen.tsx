@@ -55,7 +55,6 @@ export const BottomSheetScreen: FC<BottomSheetScreenProps> = observer(function B
                 <Button text="Close" onPress={() => handleClosePress()}/>
                 <BottomSheet
                     style={{
-                        marginHorizontal: 5,
                         paddingHorizontal: 10
                     }}
                     ref={sheetRef}

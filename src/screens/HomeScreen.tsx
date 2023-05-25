@@ -22,6 +22,7 @@ import {
 import {Snippet} from "../utils/data/snippets/snippet.interface";
 import {ACTIONABLE_SNIPPETS} from "../utils/data/snippets/actionables";
 import {Canvas, RoundedRect} from "@shopify/react-native-skia";
+import {SENSORS_SNIPPETS} from "../utils/data/snippets/sensors";
 
 
 interface HomeScreenProps extends AppStackScreenProps<"Home"> {}
@@ -106,7 +107,7 @@ export const HomeScreen: FC<HomeScreenProps> = observer(function HomeScreen(_pro
                 <View
                     style={{
                         height: 250,
-                        backgroundColor: '#ca673d',
+                        backgroundColor: colors.palette.primary500,
                         flex: 1,
                         borderBottomLeftRadius: spacing.lg,
                         borderBottomRightRadius: spacing.lg,
@@ -316,6 +317,25 @@ export const HomeScreen: FC<HomeScreenProps> = observer(function HomeScreen(_pro
                     estimatedItemSize={50}
                     ItemSeparatorComponent={() => <Divider axis={"x"} />}
                     data={SKIA_SNIPPETS}
+                />
+
+
+                <Divider axis={"y"}/>
+
+                <Text size='lg' style={{ marginBottom: 10 }} preset="heading" text='Sensors' />
+                <FlashList
+                    renderItem={({ index, item }) => {
+                        return <ListItem
+                            fn={item.url ? () => goTo(item) : null}
+                            item={item}
+                        />
+                    }}
+                    horizontal={true}
+                    keyExtractor={(item, index) => item.id}
+                    showsHorizontalScrollIndicator={false}
+                    estimatedItemSize={50}
+                    ItemSeparatorComponent={() => <Divider axis={"x"} />}
+                    data={SENSORS_SNIPPETS}
                 />
             </View>
 

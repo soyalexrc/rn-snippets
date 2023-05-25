@@ -37,7 +37,9 @@ export type AppStackParamList = {
   Welcome: undefined,
   Home: undefined,
   GestureHandler: undefined,
+  SwipeCards: undefined,
   RnChartKit: undefined,
+  ExpoCamera: undefined,
   PlaySound: undefined,
   RecordSound: undefined,
   BottomSheet: undefined,
@@ -83,6 +85,8 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="RnChartKit" component={Screens.ReactNativeChartKitScreen}/>
           <Stack.Screen name="PlaySound" component={Screens.PlaySoundScreen}/>
           <Stack.Screen name="RecordSound" component={Screens.RecordSoundScreen}/>
+          <Stack.Screen name="ExpoCamera" component={Screens.CameraScreen}/>
+          <Stack.Screen name="SwipeCards" component={Screens.SwipeCardsScreen}/>
           {/* @demo remove-block-start */}
           {/*<Stack.Screen name="Demo" component={DemoNavigator} />*/}
         </>

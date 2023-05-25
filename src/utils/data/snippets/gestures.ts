@@ -1,5 +1,6 @@
 import {Snippet} from "./snippet.interface";
 const draggable = require("../../../../assets/images/draggable.jpeg")
+const swipeShuffle = require("../../../../assets/images/swipe-shuffle.jpeg")
 
 
 export const GESTURES_SNIPPETS: Snippet[] = [
@@ -10,5 +11,13 @@ export const GESTURES_SNIPPETS: Snippet[] = [
         url: 'GestureHandler',
         enabled: true,
         image: draggable
+    },
+    {
+        id: 'GS-2',
+        label: 'Swipe & shuffle',
+        description: 'Swipe cards with spring animations. Auto shuffle',
+        url: 'SwipeCards',
+        enabled: true,
+        image: swipeShuffle
     }
 ]
