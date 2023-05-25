@@ -37,6 +37,7 @@ export type AppStackParamList = {
   Welcome: undefined,
   Home: undefined,
   GestureHandler: undefined,
+  ExpoQrScanner: undefined,
   SwipeCards: undefined,
   RnChartKit: undefined,
   ExpoCamera: undefined,
@@ -87,6 +88,7 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="RecordSound" component={Screens.RecordSoundScreen}/>
           <Stack.Screen name="ExpoCamera" component={Screens.CameraScreen}/>
           <Stack.Screen name="SwipeCards" component={Screens.SwipeCardsScreen}/>
+          <Stack.Screen name="ExpoQrScanner" component={Screens.ExpoQrScannerScreen}/>
           {/* @demo remove-block-start */}
           {/*<Stack.Screen name="Demo" component={DemoNavigator} />*/}
         </>

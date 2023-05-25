@@ -13,6 +13,22 @@ export const CAMERA_SNIPPETS: Snippet[] = [
     },
     {
         id: 'CS-2',
+        label: 'Expo QR Scanner',
+        description: '',
+        url: 'ExpoQrScanner',
+        enabled: true,
+        image: expoCamera
+    },
+    {
+        id: 'CS-3',
+        label: 'Expo Codebar Scanner',
+        description: '',
+        url: '',
+        enabled: false,
+        image: expoCamera
+    },
+    {
+        id: 'CS-4',
         label: 'Vision camera',
         description: '',
         url: '',
@@ -20,7 +36,7 @@ export const CAMERA_SNIPPETS: Snippet[] = [
         image: sampleImage
     },
     {
-        id: 'CS-3',
+        id: 'CS-5',
         label: 'Expo Face Detector',
         description: '',
         url: '',

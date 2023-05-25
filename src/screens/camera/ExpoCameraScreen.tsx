@@ -3,7 +3,6 @@ import React, {FC, useEffect, useRef, useState} from "react"
 import {Alert, Image, Modal, StyleSheet, TouchableOpacity, View,} from "react-native"
 // import { useStores } from "../models"
 import {AppStackScreenProps} from "../../navigators"
-import {useHeader} from "../../utils/useHeader";
 import {Camera, CameraType, FlashMode} from 'expo-camera';
 
 const shutter = require('../../../assets/icons/camera-shutter.png');
@@ -155,16 +154,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     shutter: {
-        width: 90,
-        height: 90
+        width: 80,
+        height: 80
     },
     flipIcon: {
-        width: 50,
-        height: 50
+        width: 40,
+        height: 40
     },
     closeIcon: {
-        width: 35,
-        height: 35
+        width: 25,
+        height: 25
     },
     preview: {
         width: 60,
