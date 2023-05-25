@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "boilerplate",
+    "scheme": "boilerplate",
     "slug": "boilerplate",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,6 +12,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "jsEngine": "hermes",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -25,6 +30,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow $(BOILERPLATE APP) to access your microphone."
+        }
+      ]
+    ]
   }
 }
