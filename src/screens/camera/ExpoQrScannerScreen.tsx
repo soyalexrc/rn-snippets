@@ -97,6 +97,7 @@ export const ExpoQrScannerScreen: FC<ExpoQrScannerScreenProps> = observer(functi
             cameraRef.current = null;
             setIsReady(false);
             setCurrentPicture('')
+            scale.value = 1;
         }
     }, [])
 

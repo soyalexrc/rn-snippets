@@ -1,6 +1,7 @@
 import {Snippet} from "./snippet.interface";
 const sampleImage = require("../../../../assets/images/logo.png")
 const expoCamera = require("../../../../assets/images/expo-camera.png")
+const qrScanner = require("../../../../assets/images/qr-scanning.jpg")
 
 export const CAMERA_SNIPPETS: Snippet[] = [
     {
@@ -14,10 +15,10 @@ export const CAMERA_SNIPPETS: Snippet[] = [
     {
         id: 'CS-2',
         label: 'Expo QR Scanner',
-        description: '',
+        description: 'Using the same camera module. Pulse animation for frame image',
         url: 'ExpoQrScanner',
         enabled: true,
-        image: expoCamera
+        image: qrScanner
     },
     {
         id: 'CS-3',
