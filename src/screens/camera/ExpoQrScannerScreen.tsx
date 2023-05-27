@@ -2,7 +2,7 @@ import {observer} from "mobx-react-lite"
 import React, {FC, useEffect, useRef, useState} from "react"
 import {Alert, Image, Modal, StyleSheet, TouchableOpacity, View,} from "react-native"
 // import { useStores } from "../models"
-import {AppStackScreenProps} from "../../navigators"
+import {AppStackScreenProps, goBack} from "../../navigators"
 import {Camera, CameraType, FlashMode} from 'expo-camera';
 import * as Haptics from 'expo-haptics';
 import Animated, {
@@ -17,7 +17,7 @@ import Animated, {
 import {Gesture, GestureDetector} from "react-native-gesture-handler";
 import AnimatedView from "react-native-reanimated/lib/types/lib/reanimated2/component/View";
 import {BarCodeScanner} from "expo-barcode-scanner";
-import {Text} from "../../components";
+import {Button, Text} from "../../components";
 
 const shutter = require('../../../assets/icons/camera-shutter.png');
 const flip = require('../../../assets/icons/retry.png');
@@ -47,12 +47,13 @@ export const ExpoQrScannerScreen: FC<ExpoQrScannerScreenProps> = observer(functi
 
     useEffect(() => {
         const getBarCodeScannerPermissions = async () => {
-            const { status } = await BarCodeScanner.requestPermissionsAsync();
+            const {status} = await BarCodeScanner.requestPermissionsAsync();
             setHasPermission(status === 'granted');
         };
 
         getBarCodeScannerPermissions();
     }, []);
+
     function toggleCameraType() {
         setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
     }
@@ -64,17 +65,20 @@ export const ExpoQrScannerScreen: FC<ExpoQrScannerScreenProps> = observer(functi
 
     const style = useAnimatedStyle(() => ({
         transform: [
-            { scale: scale.value },
+            {scale: scale.value},
         ],
     }));
 
     scale.value = withRepeat(
-        withTiming(0.9, { duration: 1000}, (finished, currentValue) => {
-            if (finished) {} else {}
+        withTiming(0.9, {duration: 1000}, (finished, currentValue) => {
+            if (finished) {
+            } else {
+            }
         }),
         -1,
         true,
-        (finished, current) => {}
+        (finished, current) => {
+        }
     );
 
     function exitCamera() {
@@ -93,7 +97,7 @@ export const ExpoQrScannerScreen: FC<ExpoQrScannerScreenProps> = observer(functi
     }
 
     useEffect(() => {
-        return () =>  {
+        return () => {
             cameraRef.current = null;
             setIsReady(false);
             setCurrentPicture('')
@@ -101,16 +105,16 @@ export const ExpoQrScannerScreen: FC<ExpoQrScannerScreenProps> = observer(functi
         }
     }, [])
 
-    const handleBarCodeScanned = ({ type, data }) => {
+    const handleBarCodeScanned = ({type, data}) => {
         setScanned(true);
         alert(`Bar code with type ${type} and data ${data} has been scanned!`);
     };
 
     if (hasPermission === null) {
-        return <Text text='Requesting for camera permission' />;
+        return <Text text='Requesting for camera permission'/>;
     }
     if (hasPermission === false) {
-        return <Text text='No access to camera' />;
+        return <Text text='No access to camera'/>;
     }
 
 
@@ -128,8 +132,17 @@ export const ExpoQrScannerScreen: FC<ExpoQrScannerScreenProps> = observer(functi
                 ratio="16:9"
                 zoom={0}
                 onCameraReady={() => setIsReady(true)}>
-                <Animated.View style={[ style]}>
-                    <Image source={qrFrame} style={[styles.qrFrame]} />
+                <View style={styles.topButtonContainer}>
+                    <TouchableOpacity style={styles.close} onPress={exitCamera}>
+                        <Image source={close} style={styles.closeIcon} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.flash} onPress={toggleTorch}>
+                        <Image source={torchMode ? flashYellow : flash} style={styles.flipIcon} />
+                    </TouchableOpacity>
+
+                </View>
+                <Animated.View style={[style]}>
+                    <Image source={qrFrame} style={[styles.qrFrame]}/>
                 </Animated.View>
             </Camera>
             <Modal
@@ -140,8 +153,17 @@ export const ExpoQrScannerScreen: FC<ExpoQrScannerScreenProps> = observer(functi
                     setQr('')
                     setModalVisible(!modalVisible);
                 }}>
-               <Text text="QR Scanned:" />
-                <Text text={qr} />
+                <View style={{flex: 1, marginHorizontal: 20, marginTop: 50, marginBottom: 20}}>
+                    <Text text="QR Scanned:"/>
+                    <Text text={qr}/>
+                    <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 10}}>
+                        <Button text='Volver' onPress={() => {
+                            setScanned(false)
+                            setQr('')
+                            setModalVisible(!modalVisible);
+                        }}/>
+                    </View>
+                </View>
             </Modal>
 
         </View>

@@ -4,12 +4,14 @@ import {Alert, Image, Modal, StyleSheet, TouchableOpacity, View,} from "react-na
 // import { useStores } from "../models"
 import {AppStackScreenProps} from "../../navigators"
 import {Camera, CameraType, FlashMode} from 'expo-camera';
+import {Button} from "../../components";
 
 const shutter = require('../../../assets/icons/camera-shutter.png');
 const flip = require('../../../assets/icons/retry.png');
 const flash = require('../../../assets/icons/flash.png');
 const flashYellow = require('../../../assets/icons/flash-yellow.png');
 const close = require('../../../assets/icons/close.png');
+
 interface CameraScreenProps extends AppStackScreenProps<"ExpoCamera"> {
 }
 
@@ -51,13 +53,13 @@ export const CameraScreen: FC<CameraScreenProps> = observer(function CameraScree
         navigation.goBack();
     }
 
-    function showPreview () {
+    function showPreview() {
         setModalVisible(true);
     }
 
 
     useEffect(() => {
-        return () =>  {
+        return () => {
             cameraRef.current = null;
             setIsReady(false);
             setCurrentPicture('')
@@ -67,27 +69,29 @@ export const CameraScreen: FC<CameraScreenProps> = observer(function CameraScree
 
     return (
         <View style={styles.container}>
-            <Camera flashMode={torchMode ? FlashMode.torch : FlashMode.off} ref={cameraRef} style={styles.camera} type={type} ratio="16:9" zoom={0} onCameraReady={() => setIsReady(true)}>
+            <Camera flashMode={torchMode ? FlashMode.torch : FlashMode.off} ref={cameraRef} style={styles.camera}
+                    type={type} ratio="16:9" zoom={0} onCameraReady={() => setIsReady(true)}>
                 <View style={styles.topButtonContainer}>
                     <TouchableOpacity style={styles.close} onPress={exitCamera}>
-                        <Image source={close} style={styles.closeIcon} />
+                        <Image source={close} style={styles.closeIcon}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.flash} onPress={toggleTorch}>
-                        <Image source={torchMode ? flashYellow : flash} style={styles.flipIcon} />
+                        <Image source={torchMode ? flashYellow : flash} style={styles.flipIcon}/>
                     </TouchableOpacity>
 
                 </View>
                 <View style={styles.bottomButtonContainer}>
                     <TouchableOpacity style={styles.flip} onPress={toggleCameraType}>
-                        <Image source={flip} style={styles.flipIcon} />
+                        <Image source={flip} style={styles.flipIcon}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.take} onPress={takePicture} disabled={!isReady}>
-                        <Image source={shutter} style={styles.shutter} />
+                        <Image source={shutter} style={styles.shutter}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{flex: 1, alignItems: 'center'}} disabled={!currentPicture} onPress={showPreview} >
+                    <TouchableOpacity style={{flex: 1, alignItems: 'center'}} disabled={!currentPicture}
+                                      onPress={showPreview}>
                         {
                             currentPicture &&
-                            <Image source={{uri: currentPicture}} style={styles.preview} />
+                            <Image source={{uri: currentPicture}} style={styles.preview}/>
                         }
                     </TouchableOpacity>
                 </View>
@@ -99,13 +103,20 @@ export const CameraScreen: FC<CameraScreenProps> = observer(function CameraScree
                     Alert.alert('Modal has been closed.');
                     setModalVisible(!modalVisible);
                 }}>
-                <Image
-                    source={{ uri: currentPicture }}
-                    style={{
-                        width: '100%',
-                        height: '100%'
-                    }}
-                />
+                <View style={{flex: 1, position: 'relative'}}>
+                    <Image
+                        source={{uri: currentPicture}}
+                        style={{
+                            width: '100%',
+                            height: '100%'
+                        }}
+                    />
+                    <View style={{position: 'absolute',  marginHorizontal: 20, bottom: 20, left: 0, right: 0, justifyContent: 'flex-end', marginBottom: 10}}>
+                        <Button text='Volver' onPress={() => {
+                            setModalVisible(!modalVisible);
+                        }}/>
+                    </View>
+                </View>
             </Modal>
         </View>
     )

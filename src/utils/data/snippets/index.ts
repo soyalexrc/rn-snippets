@@ -5,3 +5,4 @@ export * from  './skia';
 export * from  './filesystem';
 export * from  './charts';
 export * from  './gestures';
+export * from  './maps';

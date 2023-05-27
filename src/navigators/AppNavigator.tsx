@@ -16,11 +16,12 @@ import React from "react"
 import { useColorScheme } from "react-native"
 import * as Screens from "../screens"
 import * as ActionableScreens from "../features/actionables/screens"
+import * as MapScreens from "../features/maps/screens"
+import * as SensorsScreens from "../features/sensors/screens"
 import Config from "../config"
 // import { useStores } from "../models" // @demo remove-current-line
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { colors } from "../theme"
-import {BottomSheetModalScreen} from "../features/actionables/screens";
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -38,14 +39,19 @@ import {BottomSheetModalScreen} from "../features/actionables/screens";
 export type AppStackParamList = {
   Welcome: undefined,
   Home: undefined,
+  ExpoContacts: undefined,
   GestureHandler: undefined,
   BottomSheetModal: undefined,
   BottomSheetKeyboard: undefined,
   ExpoQrScanner: undefined,
+  ExpoCrypto: undefined,
   SwipeCards: undefined,
   RnChartKit: undefined,
   ExpoCamera: undefined,
   PlaySound: undefined,
+  SimpleMap: undefined,
+  ExpoNetwork: undefined,
+  NetInfo: undefined,
   RecordSound: undefined,
   BottomSheet: undefined,
   Login: undefined // @demo remove-current-line
@@ -95,6 +101,11 @@ const AppStack = observer(function AppStack() {
           <Stack.Screen name="ExpoCamera" component={Screens.CameraScreen}/>
           <Stack.Screen name="SwipeCards" component={Screens.SwipeCardsScreen}/>
           <Stack.Screen name="ExpoQrScanner" component={Screens.ExpoQrScannerScreen}/>
+          <Stack.Screen name="NetInfo" component={SensorsScreens.NetInfoScreen}/>
+          <Stack.Screen name="ExpoNetwork" component={SensorsScreens.ExpoNetworkScreen}/>
+          <Stack.Screen name="SimpleMap" component={MapScreens.SimpleMapScreen}/>
+          <Stack.Screen name="ExpoContacts" component={SensorsScreens.ExpoContactsScreen}/>
+          <Stack.Screen name="ExpoCrypto" component={SensorsScreens.ExpoCryptoScreen}/>
           {/* @demo remove-block-start */}
           {/*<Stack.Screen name="Demo" component={DemoNavigator} />*/}
         </>
